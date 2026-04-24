@@ -1,0 +1,40 @@
+name: Generate Feed
+
+on:
+  schedule:
+    # 每天 UTC 00:00 运行（北京时间 08:00）
+    # 可以按需修改，格式：分 时 日 月 周
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 支持在 GitHub 页面手动触发
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # 允许提交 feed-x.json
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: cd scripts && npm install --silent
+
+      - name: Generate feed
+        run: cd scripts && node generate-feed.js
+
+      - name: Commit feed
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add feed-x.json
+          git diff --staged --quiet && echo "No changes" || (
+            git commit -m "Update feed $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push
+          )

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "用户配置，存放在 ~/.follow-finance/config.json",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "enum": ["en", "zh", "bilingual"],
+      "default": "zh",
+      "description": "摘要语言：zh（中文）、en（英文）、bilingual（双语）"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "Asia/Shanghai",
+      "description": "IANA 时区，如 Asia/Shanghai、America/New_York"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": ["daily", "weekly"],
+      "default": "daily",
+      "description": "推送频率"
+    },
+    "deliveryTime": {
+      "type": "string",
+      "default": "08:00",
+      "description": "每日推送时间，24 小时制 HH:MM"
+    },
+    "weeklyDay": {
+      "type": "string",
+      "enum": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "default": "monday",
+      "description": "每周推送日（仅 weekly 模式）"
+    },
+    "tweetLookback": {
+      "type": "string",
+      "default": "24h",
+      "description": "抓取最近多久的推文，如 24h、48h、7d"
+    },
+    "maxTweetsPerAccount": {
+      "type": "number",
+      "default": 10,
+      "description": "每个账号最多抓取多少条推文"
+    },
+    "delivery": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["stdout", "telegram", "email"],
+          "default": "stdout"
+        },
+        "chatId": {
+          "type": "string",
+          "description": "Telegram chat ID（仅 telegram 方式）"
+        },
+        "email": {
+          "type": "string",
+          "description": "收件邮箱（仅 email 方式）"
+        }
+      }
+    },
+    "onboardingComplete": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

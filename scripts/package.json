@@ -1,0 +1,12 @@
+{
+  "name": "follow-finance-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "fetch": "node prepare-digest.js",
+    "deliver": "node deliver.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
+}

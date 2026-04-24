@@ -1,0 +1,10 @@
+{
+  "feed_url": "https://raw.githubusercontent.com/yinwenjing2301-beep/follow-finance/main/feed-x.json",
+  "x_accounts": [
+    { "name": "投资TALK君", "handle": "TJ_Research" },
+    { "name": "", "handle": "" },
+    { "name": "", "handle": "" },
+    { "name": "", "handle": "" },
+    { "name": "", "handle": "" }
+  ]
+}
